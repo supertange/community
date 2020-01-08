@@ -1,9 +1,0 @@
-server:
-  port: 8080
-
-
-github:
-  client_id: Iv1.81af48c6c8c2952b
-  client_secret: 9f160ee44804cd2183d01a70ebe7975711e4b475
-  redirect:
-    url: http://localhost:8080/callback
