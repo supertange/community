@@ -1,11 +1,16 @@
 ## 马匠社区
 
 ## 资料 
-https://spring.io
+[Spring 文档](https://spring.io/guides)
 
-http://elasticsearch.cn/explore
+[elasticsearch](http://elasticsearch.cn/explore)
+
+[webjar引入bootstrap](https://www.baeldung.com/maven-webjars)
+
+[GitHub develop key](https://github.com/supertange/community/settings/keys)
+
+[github oauth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
 
 ## 工具
-> github oath app build link:
->
-> https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/
+[Visual Paradigm](https://www.visual-paradigm.com)
+
