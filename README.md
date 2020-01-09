@@ -28,6 +28,7 @@ create table USER
 );
 
 comment on table USER is '用户';
-
-
+```
+```bash
+mvn flyway:migrate
 ```
