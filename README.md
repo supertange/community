@@ -11,6 +11,7 @@
 
 [github oauth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
 
+[thymeleaf文档](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#a-multi-language-welcome)
 ## 工具
 [Visual Paradigm](https://www.visual-paradigm.com)
 [flywaydb migration](https://flywaydb.org)

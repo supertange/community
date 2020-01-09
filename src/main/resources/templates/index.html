@@ -4,12 +4,10 @@
     <title>马匠社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.min.css">
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/static/community.css">
 </head>
 
 <body>
@@ -46,10 +44,41 @@
                         <li><a href="#">退出登录</a></li>
                     </ul>
                 </li>
-                <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=Iv1.81af48c6c8c2952b&redirect_uri=http://localhost:8080/callback&state=1">登录</a></li>
+                <li th:if="${session.user == null}"><a
+                        href="https://github.com/login/oauth/authorize?client_id=Iv1.81af48c6c8c2952b&redirect_uri=http://localhost:8080/callback&state=1">登录</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+<div class="container-fluid main" style="background-color: white">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+            <hr/>
+
+            <div class="media" th:each="question : ${questionList}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded" style="width: 38px;height: 40px;"
+                             th:src="${question.user.avatarUrl}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"></span><br/>
+                    <span class="text-desc"><span th:text="${question.commentCount}"/> 个回复
+                        <span th:text="${question.viewCount}"/>个浏览  <span th:text="${#dates.format(question.gmtCreate,'yyyy MM dd')}"/></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+            问题标题：请用精简的语言描述您发布的问题，不超过25字
+            问题补充：详细补充您的问题，并确保问题描述清晰直观
+            选择标签：选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字
+        </div>
+    </div>
+</div>
 </body>
 </html>
