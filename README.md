@@ -14,6 +14,7 @@
 ## 工具
 [Visual Paradigm](https://www.visual-paradigm.com)
 [flywaydb migration](https://flywaydb.org)
+[lombok](https://projectlombok.org)
 
 ## 脚本
 ```sql
