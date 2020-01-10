@@ -1,5 +1,6 @@
 package com.supertange.community.community.controller;
 
+import com.supertange.community.community.dto.PaginationDTO;
 import com.supertange.community.community.dto.QuestionDTO;
 import com.supertange.community.community.mapper.QuestionMapper;
 import com.supertange.community.community.mapper.UserMapper;
@@ -25,6 +26,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "3") Integer size,
                         Model model) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null) return "index";
@@ -38,9 +41,8 @@ public class IndexController {
                 break;
             }
         }
-        List<QuestionDTO> questionDTOList = questionService.list();
-
-        model.addAttribute("questionList", questionDTOList);
+        PaginationDTO pagination = questionService.list(page, size);
+        model.addAttribute("pagination", pagination);
         return "index";
     }
 
