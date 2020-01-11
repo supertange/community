@@ -29,19 +29,7 @@ public class ProfileController {
                           @RequestParam(name = "size", defaultValue = "4") Integer size,
                           HttpServletRequest request) {
 
-        User user = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies == null) return "index";
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")) {
-                String value = cookie.getValue();
-                user = userMapper.findByToken(value);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
-                }
-                break;
-            }
-        }
+        User user = (User) request.getSession().getAttribute("user");
         if (user==null) return "redirect:/";
 
         if ("questions".equals(action)) {

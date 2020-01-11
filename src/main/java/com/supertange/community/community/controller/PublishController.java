@@ -1,7 +1,6 @@
 package com.supertange.community.community.controller;
 
 import com.supertange.community.community.mapper.QuestionMapper;
-import com.supertange.community.community.mapper.UserMapper;
 import com.supertange.community.community.model.Question;
 import com.supertange.community.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 public class PublishController {
     @Autowired
     private QuestionMapper questionMapper;
-    @Autowired
-    private UserMapper userMapper;
 
     @GetMapping("/publish")
     public String publish() {
@@ -53,14 +50,7 @@ public class PublishController {
             model.addAttribute("error", "用户未登录");
             return "publish";
         }
-        User user = null;
-        for (Cookie cookie : cookies) {
-            String value = cookie.getValue();
-            user = userMapper.findByToken(value);
-            if (user != null) {
-                request.getSession().setAttribute("user", user);
-            }
-        }
+        User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             model.addAttribute("error", "用户未登录");
             return "publish";
