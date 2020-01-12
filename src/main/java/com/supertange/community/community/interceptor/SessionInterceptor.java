@@ -2,6 +2,7 @@ package com.supertange.community.community.interceptor;
 
 import com.supertange.community.community.mapper.UserMapper;
 import com.supertange.community.community.model.User;
+import com.supertange.community.community.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Configuration
 public class SessionInterceptor implements HandlerInterceptor {
@@ -25,9 +27,12 @@ public class SessionInterceptor implements HandlerInterceptor {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("token")) {
                 String value = cookie.getValue();
-                User user = userMapper.findByToken(value);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
+                UserExample userExample = new UserExample();
+                userExample.createCriteria()
+                        .andTokenEqualTo(value);
+                List<User> userList = userMapper.selectByExample(userExample);
+                if (userList.size() != 0) {
+                    request.getSession().setAttribute("user", userList.get(0));
                 }
                 break;
             }
