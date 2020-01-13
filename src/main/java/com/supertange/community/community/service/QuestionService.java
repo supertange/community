@@ -4,6 +4,7 @@ import com.supertange.community.community.dto.PaginationDTO;
 import com.supertange.community.community.dto.QuestionDTO;
 import com.supertange.community.community.exception.CustomizeErrorCode;
 import com.supertange.community.community.exception.CustomizeException;
+import com.supertange.community.community.mapper.QuestionExtMapper;
 import com.supertange.community.community.mapper.QuestionMapper;
 import com.supertange.community.community.mapper.UserMapper;
 import com.supertange.community.community.model.Question;
@@ -23,6 +24,8 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
 
@@ -115,13 +118,14 @@ public class QuestionService {
         }
     }
 
+    /**
+     *
+     * @param id
+     */
     public void incView(Integer id) {
-        Question question = questionMapper.selectByPrimaryKey(id);
         Question updateQuestion = new Question();
-        updateQuestion.setViewCount(question.getViewCount()+1);
-        QuestionExample example = new QuestionExample();
-        example.createCriteria()
-                .andIdEqualTo(id);
-        questionMapper.updateByExampleSelective(updateQuestion, example);
+        updateQuestion.setId(id);
+        updateQuestion.setViewCount(1);
+        questionExtMapper.incView(updateQuestion);
     }
 }
