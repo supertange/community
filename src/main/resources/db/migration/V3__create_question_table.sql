@@ -7,7 +7,6 @@ create table question
 	gmt_modified bigint,
 	creator int,
 	comment_count int default 0,
-	column_8 int,
 	view_count int default 0,
 	like_count int default 0,
 	tag varchar(255),

@@ -103,7 +103,7 @@ public class QuestionService {
             question.setId(null);
             question.setCommentCount(0);
             question.setLikeCount(0);
-            question.setLikeCount(0);
+            question.setViewCount(0);
             questionMapper.insert(question);
         }else {
             //update
