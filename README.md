@@ -20,6 +20,7 @@
 [Visual Paradigm](https://www.visual-paradigm.com)
 [flywaydb migration](https://flywaydb.org)
 [lombok](https://projectlombok.org)
+[Postman]()
 ## 脚本
 ```sql
 create table USER
@@ -34,6 +35,38 @@ create table USER
 
 comment on table USER is '用户';
 ```
+评论sql
+```sql
+create table comment
+(
+	id bigint auto_increment,
+	parent_id bigint not null,
+	type int not null,
+	commentator int,
+	gmt_create bigint not null,
+	gmt_modified bigint not null,
+	like_count bigint default 0,
+	constraint comment_pk
+		primary key (id)
+);
+
+comment on column comment.parent_id is '父类id';
+
+comment on column comment.type is '父类类型';
+
+comment on column comment.commentator is '评论人ID
+';
+
+comment on column comment.gmt_create is '创建时间
+';
+
+comment on column comment.gmt_modified is '更改时间';
+
+comment on column comment.like_count is '点赞数';
+
+
+```
+
 ```bash
 mvn flyway:migrate
 ```
