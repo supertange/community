@@ -54,7 +54,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public PaginationDTO list(int userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         QuestionExample example = new QuestionExample();
         example.createCriteria().andCreatorEqualTo(userId);
@@ -83,10 +83,10 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question=questionMapper.selectByPrimaryKey(id);
         if (question == null) {
-            throw new CustomizeException("你找的问题不在了，要不您再试试");
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
@@ -100,6 +100,10 @@ public class QuestionService {
             //create
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(System.currentTimeMillis());
+            question.setId(null);
+            question.setCommentCount(0);
+            question.setLikeCount(0);
+            question.setLikeCount(0);
             questionMapper.insert(question);
         }else {
             //update
@@ -122,7 +126,7 @@ public class QuestionService {
      *
      * @param id
      */
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Question updateQuestion = new Question();
         updateQuestion.setId(id);
         updateQuestion.setViewCount(1);
