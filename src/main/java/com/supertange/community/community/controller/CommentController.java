@@ -1,18 +1,19 @@
 package com.supertange.community.community.controller;
 
 import com.supertange.community.community.dto.CommentCreateDTO;
+import com.supertange.community.community.dto.CommentDTO;
 import com.supertange.community.community.dto.ResultDTO;
+import com.supertange.community.community.enums.CommentTypeEnum;
 import com.supertange.community.community.exception.CustomizeErrorCode;
 import com.supertange.community.community.model.Comment;
 import com.supertange.community.community.model.User;
 import com.supertange.community.community.service.CommentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class CommentController {
@@ -39,5 +40,12 @@ public class CommentController {
         comment.setLikeCount(0L);
         commentService.insert(comment);
         return ResultDTO.ok();
+    }
+
+    @GetMapping("/comment/{id}")
+    public ResultDTO comments(@PathVariable Long id){
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+
+        return ResultDTO.okOf(commentDTOS);
     }
 }
