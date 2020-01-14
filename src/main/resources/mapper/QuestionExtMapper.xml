@@ -8,7 +8,6 @@
         <result column="GMT_MODIFIED" jdbcType="BIGINT" property="gmtModified"/>
         <result column="CREATOR" jdbcType="INTEGER" property="creator"/>
         <result column="COMMENT_COUNT" jdbcType="INTEGER" property="commentCount"/>
-        <result column="COLUMN_8" jdbcType="INTEGER" property="column8"/>
         <result column="VIEW_COUNT" jdbcType="INTEGER" property="viewCount"/>
         <result column="LIKE_COUNT" jdbcType="INTEGER" property="likeCount"/>
         <result column="TAG" jdbcType="VARCHAR" property="tag"/>
@@ -23,4 +22,5 @@
         set COMMENT_COUNT = COMMENT_COUNT+ #{commentCount,jdbcType=INTEGER}
         WHERE id = #{id}
     </update>
+
 </mapper>

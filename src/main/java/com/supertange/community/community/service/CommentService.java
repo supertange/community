@@ -11,6 +11,7 @@ import com.supertange.community.community.model.Comment;
 import com.supertange.community.community.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CommentService {
@@ -22,6 +23,7 @@ public class CommentService {
     private QuestionExtMapper questionExtMapper;
 
 
+    @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);

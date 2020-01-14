@@ -22,3 +22,13 @@ body{
     color: #999;
     font-size: 13px;
 }
+.media-heading{
+    margin-top: 9px;
+}
+.comment{
+    margin-top: 5px;
+}
+.btn-comment{
+    float: right;
+    margin: 10px;
+}
