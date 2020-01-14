@@ -65,7 +65,6 @@ function collapseComments(e) {
                     "id": "comment-" + id,
                     html: items.join("")
                 }).appendTo(commentBody);
-                items.push("<li id='" + key + "'>" + val + "</li>");
             });
             $("<div/>", {
                 "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments",
