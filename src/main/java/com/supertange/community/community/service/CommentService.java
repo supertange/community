@@ -5,10 +5,7 @@ import com.supertange.community.community.dto.CommentDTO;
 import com.supertange.community.community.enums.CommentTypeEnum;
 import com.supertange.community.community.exception.CustomizeErrorCode;
 import com.supertange.community.community.exception.CustomizeException;
-import com.supertange.community.community.mapper.CommentMapper;
-import com.supertange.community.community.mapper.QuestionExtMapper;
-import com.supertange.community.community.mapper.QuestionMapper;
-import com.supertange.community.community.mapper.UserMapper;
+import com.supertange.community.community.mapper.*;
 import com.supertange.community.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,8 @@ public class CommentService {
     private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private CommentExtMapper commentExtMapper;
 
     @Transactional
     public void insert(Comment comment) {
@@ -47,6 +46,12 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+
+            //增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         }else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
