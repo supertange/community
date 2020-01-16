@@ -34,15 +34,19 @@ body {
 .profile .section {
     margin-top: 15px;
 }
+.question-title {
+    margin-top: 25px;
+}
+.question-tag {
+    margin-right: 5px;
+}
+
 
 .community-menu {
     color: #999;
     font-size: 13px;
 }
 
-.media-heading {
-    margin-top: 9px;
-}
 .jumbotron {
     margin: 50px;
 }
