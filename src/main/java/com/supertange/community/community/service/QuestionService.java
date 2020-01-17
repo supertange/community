@@ -128,10 +128,6 @@ public class QuestionService {
         }
     }
 
-    /**
-     *
-     * @param id
-     */
     public void incView(Long id) {
         Question updateQuestion = new Question();
         updateQuestion.setId(id);
