@@ -2,7 +2,6 @@ package com.supertange.community.community.controller;
 
 import com.supertange.community.community.dto.AccessTokenDTO;
 import com.supertange.community.community.dto.GithubUser;
-import com.supertange.community.community.mapper.UserMapper;
 import com.supertange.community.community.model.User;
 import com.supertange.community.community.provider.GithubProvider;
 import com.supertange.community.community.service.UserService;
