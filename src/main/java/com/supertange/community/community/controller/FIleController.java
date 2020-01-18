@@ -1,6 +1,9 @@
 package com.supertange.community.community.controller;
 
+import com.supertange.community.community.dto.FileDTO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author: supertange
@@ -9,5 +12,17 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class FIleController {
-//    public Obg
+
+
+    @ResponseBody
+    @RequestMapping("/file/upload")
+    public FileDTO upload() {
+
+        FileDTO fileDTO = new FileDTO();
+        fileDTO.setSuccess(1);
+        fileDTO.setMessage("ok");
+        fileDTO.setUrl("/static/img/a.jpg");
+        return fileDTO;
+    }
+
 }
