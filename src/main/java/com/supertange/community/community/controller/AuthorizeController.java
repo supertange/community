@@ -30,8 +30,6 @@ public class AuthorizeController {
     private String clientId;
     @Value("${github.client.secret}")
     private String clientSecret;
-    @Value("${github.redirect.url}")
-    private String redirectUrl;
 
 
     @GetMapping("/callback")
@@ -40,7 +38,6 @@ public class AuthorizeController {
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
-        accessTokenDTO.setRedirect_uri(redirectUrl);
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
         accessTokenDTO.setState(state);

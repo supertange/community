@@ -1,3 +1,3 @@
-alter table COMMENT alter column COMMENTATOR bigint;
-alter table QUESTION alter column CREATOR bigint;
+alter table comment alter column commentator bigint;
+alter table question alter column creator bigint;
 
