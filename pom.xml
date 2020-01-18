@@ -65,6 +65,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+        <dependency>
+            <groupId>cn.ucloud</groupId>
+            <artifactId>ucloud-sdk-java-udisk</artifactId>
+            <version>0.8.2.8-release</version>
+        </dependency>
         <!--bootstrap-->
         <dependency>
             <groupId>org.webjars</groupId>
