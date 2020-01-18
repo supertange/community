@@ -1,5 +1,20 @@
 ## 马匠社区
 
+## 部署
+### 部署依赖
+- Git
+- Jdk
+- Maven
+- MySql
+### 步骤
+- yum update
+- yum install git
+- mkdir App
+- cd App
+- git clone https://github.com/supertange/community.git
+- yum install maven
+- mvn clean compile package
+
 ## 资料 
 [Spring 文档](https://spring.io/guides)
 
