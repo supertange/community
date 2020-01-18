@@ -2,6 +2,7 @@ package com.supertange.community.community.service;
 
 import com.supertange.community.community.dto.PaginationDTO;
 import com.supertange.community.community.dto.QuestionDTO;
+import com.supertange.community.community.dto.QuestionQueryDTO;
 import com.supertange.community.community.exception.CustomizeErrorCode;
 import com.supertange.community.community.exception.CustomizeException;
 import com.supertange.community.community.mapper.QuestionExtMapper;
@@ -33,9 +34,16 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
+        if (StringUtils.isNoneBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search= Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+
         PaginationDTO paginationDTO = new PaginationDTO();
-        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         paginationDTO.setPagination(totalCount, page, size);
 
         if (page < 1) page = 1;
@@ -44,9 +52,9 @@ public class QuestionService {
         //偏移量
         Integer offset = size * (page - 1);
         if (offset<0) offset = 1;
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
-        List<Question> list = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDTO.setPage(offset);
+        questionQueryDTO.setSize(size);
+        List<Question> list = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : list) {
             User user = userMapper.selectByPrimaryKey(question.getCreator());

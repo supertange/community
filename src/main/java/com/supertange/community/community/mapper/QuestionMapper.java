@@ -1,5 +1,6 @@
 package com.supertange.community.community.mapper;
 
+import com.supertange.community.community.dto.QuestionQueryDTO;
 import com.supertange.community.community.model.Question;
 import com.supertange.community.community.model.QuestionExample;
 import java.util.List;
