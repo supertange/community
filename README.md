@@ -13,8 +13,13 @@
 - cd App
 - git clone https://github.com/supertange/community.git
 - yum install maven
-- mvn clean compile package
-
+- mvn compile package
+- mvn package
+- java -jar -Dspring.profiles.active=prod target/community.jar
+- ps -aux | grep java   //查看java进程是否关闭
+- git pull   //主机上pull代码  编译
+- mvn flyway:repair  //修复表
+- mvn flyway:migrate
 ## 资料 
 [Spring 文档](https://spring.io/guides)
 
