@@ -102,12 +102,6 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.7-1</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jquery</artifactId>
-                    <groupId>org.webjars</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
